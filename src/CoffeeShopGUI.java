@@ -1,12 +1,12 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
 import java.awt.event.*;
 
 import javax.swing.Box;
@@ -33,7 +33,7 @@ public class CoffeeShopGUI extends JFrame
 		 
 		 frame = new JFrame("Coffee Shop Inventory");
 	     frame.setLayout(new BorderLayout());
-	     frame.setSize(1400, 1200);
+	     frame.setSize(new Dimension(1900, 1600));
 	     
 	     Font titleFont = new Font("Sans Serif", Font.BOLD, 40);
 	     
@@ -43,7 +43,7 @@ public class CoffeeShopGUI extends JFrame
 
 	     JTextArea welcome = new JTextArea("Welcome to your Coffee Shop Inventory!");
 	     welcome.setFont(titleFont);
-	     welcome.setForeground(new Color(153,102,0));
+	     welcome.setForeground(new Color(110,51,26));
 	     welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
 	     welcomeBox.add(welcome);
 
@@ -109,24 +109,13 @@ public class CoffeeShopGUI extends JFrame
 	            JLabel quantityLabel = new JLabel(Integer.toString(product.getQuantity()));
 	            quantityLabel.setFont(productFont);
 
-                JTextField quantityTextField = new JTextField("Qty");
+                JTextField quantityTextField = new JTextField();
+                
                 JButton addButton = new JButton("Add");
-                addButton.setBackground(Color.GREEN);
+                addButton.setBackground(new Color(78, 156, 47));
                 
                 JButton remButton = new JButton("Remove");
-                remButton.setBackground(Color.RED);
-	            
-	            quantityTextField.addFocusListener(new FocusAdapter() 
-	            {
-	                @Override
-	                public void focusGained(FocusEvent e) 
-	                {
-	                    if ("Qty".equals(quantityTextField.getText())) 
-	                    {
-	                        quantityTextField.setText("");
-	                    }
-	                }
-	            });
+                remButton.setBackground(new Color(255, 5, 9));
 	            
 	            
 
@@ -246,11 +235,12 @@ public class CoffeeShopGUI extends JFrame
 		            quantityLabel.setFont(productFont);
 
 	                JTextField quantityTextField = new JTextField();
+	                
 	                JButton addButton = new JButton("Add");
-	                addButton.setBackground(new Color(102,255,102));
+	                addButton.setBackground(new Color(78, 156, 47));
 	                
 	                JButton remButton = new JButton("Remove");
-	                remButton.setBackground(new Color(255,102,102));
+	                remButton.setBackground(new Color(255, 5, 9));
 
 	                addButton.addActionListener(new ActionListener() 
 	                {
@@ -300,14 +290,9 @@ public class CoffeeShopGUI extends JFrame
 	                categoryPanel.add(quantityTextField);
 	                categoryPanel.add(addButton);
 	                categoryPanel.add(remButton);
-	            }
-	            
+	            }   
 	        }
 
-	 
-	    	
-	    	
-	    	
 	        // Repaint the frame to reflect the changes
 	        frame.revalidate();
 	        frame.repaint();
