@@ -20,27 +20,38 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
+//CoffeeShopGUI IS-A JFrame
 public class CoffeeShopGUI extends JFrame
 {
+	 //CoffeeShopGUI HAS-A coffeeShop
 	 CoffeeShop coffeeShop;
+	 
+	 //CoffeeShopGUI HAS-A frame
 	 private JFrame frame;
+	 
+	 //CoffeeShopGUI HAS-A tabbedPane
 	 private JTabbedPane tabbedPane;
 
+	 
 	 public CoffeeShopGUI(CoffeeShop coffeeShop)
 	 {
 		 //Sets coffeeShop as given model
 		 this.coffeeShop = coffeeShop;
 		 
+		 //Sets name for frame, layout, and dimensions
 		 frame = new JFrame("Coffee Shop Inventory");
 	     frame.setLayout(new BorderLayout());
 	     frame.setSize(new Dimension(1900, 1600));
 	     
+	     //Font for titleFont
 	     Font titleFont = new Font("Sans Serif", Font.BOLD, 40);
 	     
+	     //Creates panel to hold welcome message
 	     JPanel welcomePanel = new JPanel();
 	     Box welcomeBox = Box.createVerticalBox();
 	     welcomePanel.add(welcomeBox);
 
+	     //Welcome Message
 	     JTextArea welcome = new JTextArea("Welcome to your Coffee Shop Inventory!");
 	     welcome.setFont(titleFont);
 	     welcome.setForeground(new Color(110,51,26));
@@ -49,9 +60,7 @@ public class CoffeeShopGUI extends JFrame
 
 	     frame.add(welcomePanel, BorderLayout.NORTH);
 
-	     
-	     
-
+	     //Tabbed pane to hold categories and products
 	     tabbedPane = new JTabbedPane();
 	     tabbedPane.setUI(new BasicTabbedPaneUI()
 	     {
@@ -69,9 +78,12 @@ public class CoffeeShopGUI extends JFrame
 	    	 tabbedPane.addTab(category.getName(), categoryPanel);
 	     }
 	     
+	     //Adds tabbedPane to frame
 	     frame.add(tabbedPane, BorderLayout.CENTER);
 	     
+	     //Panel to hold check low quantity panel
 	     JPanel lowQuantityPanel = new JPanel();
+	     //Button to check if products are below threshold
 	     JButton checkLowQuantityButton = new JButton("Check Low Quantity");
 	        checkLowQuantityButton.addActionListener(new ActionListener() 
 	        {
@@ -82,7 +94,9 @@ public class CoffeeShopGUI extends JFrame
 	            }
 	        });
 
+	     //Add button to panel
 	     lowQuantityPanel.add(checkLowQuantityButton);
+	     //Add panel to frame
 	     frame.add(lowQuantityPanel, BorderLayout.SOUTH); 
 
 	     updateInventoryText();
@@ -93,32 +107,39 @@ public class CoffeeShopGUI extends JFrame
 	     
 	 }
 
-	 
+	 //Creates Each Panel within each category tab
 	  private JPanel createCategoryPanel(Category category) 
 	  {
+		  //Sets Panel and layout
 	        JPanel panel = new JPanel(new GridLayout(0, 4));
 	        
 	  
+	        //Iterates through each product and its quantity
 	        for (Product product : category.getProducts().values()) 
 	        {
+	        	//Sets font for product
 	        	Font productFont = new Font("Comic Sans", Font.PLAIN, 20);
 	        	
+	        	//Creates name label for product
 	            JLabel nameLabel = new JLabel(product.getName());
 	            nameLabel.setFont(productFont);
 	            
+	            //Creates quantity label for products quantity
 	            JLabel quantityLabel = new JLabel(Integer.toString(product.getQuantity()));
 	            quantityLabel.setFont(productFont);
 
+	            //Creates text field to input quantity to add or remove
                 JTextField quantityTextField = new JTextField();
                 
+                //Creates add button
                 JButton addButton = new JButton("Add");
                 addButton.setBackground(new Color(78, 156, 47));
                 
+                //Creates remove button
                 JButton remButton = new JButton("Remove");
                 remButton.setBackground(new Color(255, 5, 9));
 	            
-	            
-
+	            //Action Listener for ADD Button
 	            addButton.addActionListener(new ActionListener() 
 	            {
 	                @Override
@@ -136,6 +157,7 @@ public class CoffeeShopGUI extends JFrame
 	                }
 	            });
 
+	            //Action Listener for REMOVE Button
 	            remButton.addActionListener(new ActionListener() 
 	            {
 	                @Override
@@ -152,6 +174,7 @@ public class CoffeeShopGUI extends JFrame
 	                }
 	            });
 
+	            //Adds components to panel
 	            panel.add(nameLabel);
 	            panel.add(quantityLabel);
 	            panel.add(quantityTextField);
@@ -162,14 +185,18 @@ public class CoffeeShopGUI extends JFrame
 	        return panel;
 	    }
 	  
+	  //Checks if product quantity is below threshold (5)
 	  public void checkLowQuantity() 
 	  {
+		  //Creates Message to user
 	        StringBuilder lowQuantityMessage = new StringBuilder("Low Quantity Alert:\n");
 
+	        //Iterates through categories and products to see if quantity is below 5 
 	        for (Category category : coffeeShop.getCategories().values()) 
 	        {
 	            for (Product product : category.getProducts().values()) 
 	            {
+	            	//If product is below 5, adds product to low quantity message
 	                if (product.getQuantity() < 5) 
 	                {
 	                    lowQuantityMessage.append(product.getName())
@@ -184,12 +211,14 @@ public class CoffeeShopGUI extends JFrame
 	        {
 	            JOptionPane.showMessageDialog(frame, lowQuantityMessage.toString());
 	        } 
+	        //If no products are below 5, tells user all products are sufficient
 	        else 
 	        {
 	            JOptionPane.showMessageDialog(frame, "All products have sufficient quantity.");
 	        }
 	    }
 
+	  //Updates the GUI to reflect new amount of product quantity if added or removed
 	    public void updateInventoryText() 
 	    {
 	    	Font productFont = new Font("Comic Sans", Font.PLAIN, 20);
