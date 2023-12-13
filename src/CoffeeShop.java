@@ -1,3 +1,9 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +20,7 @@ class CoffeeShop
     private Category syrupCategory;
     
     private Category teaCategory;
+
 
     public CoffeeShop() 
     {
@@ -49,6 +56,7 @@ class CoffeeShop
         teaCategory.addProduct("Black Tea", 7);
         teaCategory.addProduct("Green Tea", 7);
         teaCategory.addProduct("Passion Tea", 7);
+        
 
         categories.put("Tea", teaCategory);
         categories.put("Syrup", syrupCategory);
@@ -75,7 +83,10 @@ class CoffeeShop
 			if(category.getProducts().containsKey(productName))
 			{
 				Product product = category.getProducts().get(productName);
+				int oldQuantity = product.getQuantity();
 				product.setQuantity(product.getQuantity() + quantityToAdd);
+				
+				logQuantityChange(productName, oldQuantity, product.getQuantity());
 				break;
 			}
 		}
@@ -89,9 +100,12 @@ class CoffeeShop
 			if(category.getProducts().containsKey(productName))
 			{
 				Product product = category.getProducts().get(productName);
+				int oldQuantity = product.getQuantity();
 				if(product.getQuantity() >= quantityToRemove)
 				{
 					product.setQuantity(product.getQuantity() - quantityToRemove);
+					
+					logQuantityChange(productName, oldQuantity, product.getQuantity());
 				}
 				else
 				{
@@ -99,6 +113,20 @@ class CoffeeShop
 				}
 				break;
 			}
+		}
+	}
+	
+	
+	
+	public void logQuantityChange(String productName, int oldQuantity, int newQuantity)
+	{
+		try (PrintWriter pWriter = new PrintWriter(new FileWriter("quantity_changes.txt", true)))
+		{
+			pWriter.println(productName +" - Quantity changed from " + oldQuantity + " to " + newQuantity);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
 		}
 	}
 

@@ -1,7 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.GridLayout;
@@ -11,7 +10,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.*;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -208,6 +206,7 @@ public class CoffeeShopGUI extends JFrame
 	    	Font productFont = new Font("Comic Sans", Font.PLAIN, 20);
 	    	Font headerFont = new Font("Comic Sans", Font.BOLD, 36);
 	    	
+	    	
 	    	for (int i = 0; i < tabbedPane.getTabCount(); i++) 
 	    	{
 	            Category category = coffeeShop.getCategories().get(tabbedPane.getTitleAt(i));
@@ -302,8 +301,13 @@ public class CoffeeShopGUI extends JFrame
 	                categoryPanel.add(addButton);
 	                categoryPanel.add(remButton);
 	            }
+	            
 	        }
 
+	 
+	    	
+	    	
+	    	
 	        // Repaint the frame to reflect the changes
 	        frame.revalidate();
 	        frame.repaint();
@@ -317,4 +321,3 @@ public class CoffeeShopGUI extends JFrame
 
 	    }
 	}
-
