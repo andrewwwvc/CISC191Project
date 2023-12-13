@@ -131,7 +131,10 @@ class CoffeeShop
 				//Checks if current quantity is greater than quantity wanted to remove
 				if(product.getQuantity() >= quantityToRemove)
 				{
+					//Reduction of product quantity
 					product.setQuantity(product.getQuantity() - quantityToRemove);
+					
+					//Writes change in quantity to file
 					logQuantityChange(productName, oldQuantity, product.getQuantity());
 				}
 				else
@@ -144,17 +147,20 @@ class CoffeeShop
 	}
 	
 	
-	
+	//Logs changes if product quantity increases or decreases
 	public void logQuantityChange(String productName, int oldQuantity, int newQuantity)
 	{
+		//Writes changes to file stating product name, old quantity, and new quantity
 		try (PrintWriter pWriter = new PrintWriter(new FileWriter("quantity_changes.txt", true)))
 		{
 			pWriter.println(productName +" - Quantity changed from " + oldQuantity + " to " + newQuantity);
+			pWriter.close();
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
+		
 	}
 
 	
