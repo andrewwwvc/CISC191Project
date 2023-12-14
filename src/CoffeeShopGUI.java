@@ -47,7 +47,7 @@ public class CoffeeShopGUI extends JFrame
 	     frame.setSize(new Dimension(1900, 1600));
 	     
 	     //Font for titleFont
-	     Font titleFont = new Font("Sans Serif", Font.BOLD, 40);
+	     Font titleFont = new Font("Serif Bold Italic", Font.BOLD, 40);
 	     
 	     //Creates panel to hold welcome message
 	     JPanel welcomePanel = new JPanel();
@@ -68,7 +68,7 @@ public class CoffeeShopGUI extends JFrame
 	     
 	     //Welcome Message
 	     JTextArea welcome = new JTextArea("Welcome to your Coffee Shop Inventory!");
-	     welcome.setFont(titleFont);
+	     welcome.setFont(new Font("Sans Serif", Font.BOLD, 40));
 	     welcome.setForeground(new Color(110,51,26));
 	     welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
 	     welcomePanel.add(welcome);
@@ -107,6 +107,7 @@ public class CoffeeShopGUI extends JFrame
 	     lowQuantityPanel.setBackground(new Color(255,255,204));
 	     //Button to check if products are below threshold
 	     JButton checkLowQuantityButton = new JButton("Check Low Quantity");
+	     checkLowQuantityButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 	     checkLowQuantityButton.setBackground(new Color(51, 204, 255));
 	        checkLowQuantityButton.addActionListener(new ActionListener() 
 	        {
@@ -141,7 +142,7 @@ public class CoffeeShopGUI extends JFrame
 	        for (Product product : category.getProducts().values()) 
 	        {
 	        	//Sets font for product
-	        	Font productFont = new Font("Comic Sans", Font.PLAIN, 20);
+	        	Font productFont = new Font("Comic Sans MS", Font.PLAIN, 20);
 	        	
 	        	//Creates name label for product
 	            JLabel nameLabel = new JLabel(product.getName());
@@ -156,11 +157,13 @@ public class CoffeeShopGUI extends JFrame
                 
                 //Creates add button
                 JButton addButton = new JButton("Add");
-                addButton.setBackground(new Color(78, 156, 47));
+                addButton.setFont(productFont);
+                addButton.setBackground(new Color(102,255,102));
                 
                 //Creates remove button
                 JButton remButton = new JButton("Remove");
-                remButton.setBackground(new Color(255, 5, 9));
+                remButton.setFont(productFont);
+                remButton.setBackground(new Color(255, 102, 102));
 	            
 	            //Action Listener for ADD Button
 	            addButton.addActionListener(new ActionListener() 
@@ -244,8 +247,8 @@ public class CoffeeShopGUI extends JFrame
 	  //Updates the GUI to reflect new amount of product quantity if added or removed
 	    public void updateInventoryText() 
 	    {
-	    	Font productFont = new Font("Comic Sans", Font.PLAIN, 20);
-	    	Font headerFont = new Font("Comic Sans", Font.BOLD, 36);
+	    	Font productFont = new Font("Comic Sans MS", Font.PLAIN, 20);
+	    	Font headerFont = new Font("Comic Sans MS", Font.BOLD, 36);
 	    	
 	    	
 	    	for (int i = 0; i < tabbedPane.getTabCount(); i++) 
@@ -288,11 +291,15 @@ public class CoffeeShopGUI extends JFrame
 
 	                JTextField quantityTextField = new JTextField();
 	                
+	                //Creates add button
 	                JButton addButton = new JButton("Add");
-	                addButton.setBackground(new Color(78, 156, 47));
+	                addButton.setFont(productFont);
+	                addButton.setBackground(new Color(102,255,102));
 	                
+	                //Creates remove button
 	                JButton remButton = new JButton("Remove");
-	                remButton.setBackground(new Color(255, 5, 9));
+	                remButton.setFont(productFont);
+	                remButton.setBackground(new Color(255, 102, 102));
 
 	                //Action Listener for when Add Button is Clicked
 	                addButton.addActionListener(new ActionListener() 
