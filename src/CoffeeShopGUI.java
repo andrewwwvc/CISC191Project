@@ -94,19 +94,20 @@ public class CoffeeShopGUI extends JFrame
 	     for (Category category : coffeeShop.getCategories().values()) 
 	     {
 	    	 JPanel categoryPanel = createCategoryPanel(category);
-	    	 categoryPanel.setBackground(new Color(110,51,26));
+	    	 categoryPanel.setBackground(new Color(255, 255, 204));
 	    	 tabbedPane.addTab(category.getName(), categoryPanel);
 	     }
 	     
-	     tabbedPane.setBackground(new Color(110,51,26));
+	     tabbedPane.setBackground(new Color(255, 255, 204));
 	     //Adds tabbedPane to frame
 	     frame.add(tabbedPane, BorderLayout.CENTER);
 	     
 	     //Panel to hold check low quantity panel
 	     JPanel lowQuantityPanel = new JPanel();
+	     lowQuantityPanel.setBackground(new Color(255,255,204));
 	     //Button to check if products are below threshold
 	     JButton checkLowQuantityButton = new JButton("Check Low Quantity");
-	     checkLowQuantityButton.setBackground(new Color(255,255,153));
+	     checkLowQuantityButton.setBackground(new Color(51, 204, 255));
 	        checkLowQuantityButton.addActionListener(new ActionListener() 
 	        {
 	            @Override
