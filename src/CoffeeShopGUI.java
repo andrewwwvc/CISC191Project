@@ -256,7 +256,7 @@ public class CoffeeShopGUI extends JFrame
 	            // Iterate through the products of the category and add them to the panel
 	            for (Product product : category.getProducts().values()) 
 	            {
-		        	
+		        	//Creates Label for product
 		            JLabel nameLabel = new JLabel(product.getName());
 		            nameLabel.setFont(productFont);
 		            
@@ -271,6 +271,7 @@ public class CoffeeShopGUI extends JFrame
 	                JButton remButton = new JButton("Remove");
 	                remButton.setBackground(new Color(255, 5, 9));
 
+	                //Action Listener for when Add Button is Clicked
 	                addButton.addActionListener(new ActionListener() 
 	                {
 	                    @Override
@@ -278,7 +279,9 @@ public class CoffeeShopGUI extends JFrame
 	                    {
 	                        try 
 	                        {
+	                        	//Grabs quantity to add from text field
 	                            int quantityToAdd = Integer.parseInt(quantityTextField.getText());
+	                            //Adds Quantity to current product quantity
 	                            coffeeShop.addQuantity(product.getName(), quantityToAdd);
 	                            updateInventoryText();
 	                        } 
@@ -289,6 +292,7 @@ public class CoffeeShopGUI extends JFrame
 	                    }
 	                });
 
+	                //Action Listener for when Remove Button is clicked
 	                remButton.addActionListener(new ActionListener() 
 	                {
 	                    @Override
@@ -296,13 +300,17 @@ public class CoffeeShopGUI extends JFrame
 	                    {
 	                    	try 
 	                    	{
+	                    		//Grabs quantity to remove from text field
 	                            int quantityToRemove = Integer.parseInt(quantityTextField.getText());
+	                            //Checks if quantity from text field is greater than current product quantity
 	                            if (quantityToRemove > product.getQuantity()) 
 	                            {
+	                            	//Displays message if quantity from text field is greater than current quantity
 	                                JOptionPane.showMessageDialog(frame, "Error: Quantity to remove exceeds current quantity.");
 	                            } 
 	                            else 
 	                            {
+	                            	//Reduces amount from current text quantity
 	                                coffeeShop.reduceQuantity(product.getName(), quantityToRemove);
 	                                updateInventoryText();
 	                            }

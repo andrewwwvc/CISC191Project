@@ -28,8 +28,8 @@ class Category
     }
 
     //Method to add products into category's hashmap of products
-    public void addProduct(String productName, int quantity) 
+    public void addProduct(Product productName) 
     {
-        products.put(productName, new Product(productName, quantity));
+        products.put(productName.getName(), productName);
     }
 }

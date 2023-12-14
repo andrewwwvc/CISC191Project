@@ -38,33 +38,33 @@ class CoffeeShop
     {
     	//Coffee Category
         coffeeCategory = new Category("Coffee");
-        coffeeCategory.addProduct("Signature Roast", 20);
-        coffeeCategory.addProduct("Blonde Roast", 10);
-        coffeeCategory.addProduct("Decaf", 5);
+        coffeeCategory.addProduct(new CoffeeProduct("Signature Roast", 20));
+        coffeeCategory.addProduct(new CoffeeProduct("Blonde Roast", 10));
+        coffeeCategory.addProduct(new CoffeeProduct("Decaf", 5));
 
         //Milk Category
         milkCategory = new Category("Milk");
-        milkCategory.addProduct("2% Milk", 20);
-        milkCategory.addProduct("Whole Milk", 15);
-        milkCategory.addProduct("Soy", 8);
-        milkCategory.addProduct("Almond", 8);
-        milkCategory.addProduct("Coconut", 8);
-        milkCategory.addProduct("Oatmilk", 8);
+        milkCategory.addProduct(new MilkProduct("2% Milk", 20));
+        milkCategory.addProduct(new MilkProduct("Whole Milk", 15));
+        milkCategory.addProduct(new MilkProduct("Soy Milk", 8));
+        milkCategory.addProduct(new MilkProduct("Almond Milk", 8));
+        milkCategory.addProduct(new MilkProduct("Coconut Milk", 8));
+        milkCategory.addProduct(new MilkProduct("Oatmilk", 8));
 
         //Syrup Category
         syrupCategory = new Category("Syrup");
-        syrupCategory.addProduct("Vanilla", 15);
-        syrupCategory.addProduct("Caramel", 10);
-        syrupCategory.addProduct("Mocha", 10);
-        syrupCategory.addProduct("White Mocha", 15);
-        syrupCategory.addProduct("Hazelnut", 8);
-        syrupCategory.addProduct("Sugar-Free Vanilla", 5);
+        syrupCategory.addProduct(new SyrupProduct("Vanilla", 15));
+        syrupCategory.addProduct(new SyrupProduct("Caramel", 10));
+        syrupCategory.addProduct(new SyrupProduct("Mocha", 10));
+        syrupCategory.addProduct(new SyrupProduct("White Mocha", 15));
+        syrupCategory.addProduct(new SyrupProduct("Hazelnut", 8));
+        syrupCategory.addProduct(new SyrupProduct("Sugar-Free Vanilla", 5));
         
         //Tea Category
         teaCategory = new Category("Tea");
-        teaCategory.addProduct("Black Tea", 7);
-        teaCategory.addProduct("Green Tea", 7);
-        teaCategory.addProduct("Passion Tea", 7);
+        teaCategory.addProduct(new TeaProduct("Black Tea", 7));
+        teaCategory.addProduct(new TeaProduct("Green Tea", 7));
+        teaCategory.addProduct(new TeaProduct("Passion Tea", 7));
         
         //Puts Categories into hashmap with its products
         categories.put("Tea", teaCategory);

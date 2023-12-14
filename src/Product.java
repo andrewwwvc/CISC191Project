@@ -1,4 +1,4 @@
-public class Product 
+public abstract class Product 
 {
 	//Product HAS-A name
 	private String name;
