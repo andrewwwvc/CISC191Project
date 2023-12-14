@@ -2,13 +2,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.*;
 
+import javax.swing.*;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -48,16 +51,32 @@ public class CoffeeShopGUI extends JFrame
 	     
 	     //Creates panel to hold welcome message
 	     JPanel welcomePanel = new JPanel();
-	     Box welcomeBox = Box.createVerticalBox();
-	     welcomePanel.add(welcomeBox);
-
+	     FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER);
+	     welcomePanel.setLayout(flowLayout);
+	     
+	     //Creating image icon
+	     ImageIcon latte = new ImageIcon("latte.jpeg");
+	     Image image = latte.getImage();
+	     
+	     //Setting size of image
+	     Image scaledImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+	     ImageIcon scaledIcon = new ImageIcon(scaledImage);
+	     
+	     //Adding image to the welcome panel
+	     JLabel imageLabelLeft = new JLabel(scaledIcon);
+	     welcomePanel.add(imageLabelLeft);
+	     
 	     //Welcome Message
 	     JTextArea welcome = new JTextArea("Welcome to your Coffee Shop Inventory!");
 	     welcome.setFont(titleFont);
 	     welcome.setForeground(new Color(110,51,26));
 	     welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
-	     welcomeBox.add(welcome);
-
+	     welcomePanel.add(welcome);
+	     
+	     //Adding a second image to welcome panel
+	     JLabel imageLabelRight = new JLabel(scaledIcon);
+	     welcomePanel.add(imageLabelRight);
+	     welcomePanel.setBackground(Color.WHITE);
 	     frame.add(welcomePanel, BorderLayout.NORTH);
 
 	     //Tabbed pane to hold categories and products
@@ -75,9 +94,11 @@ public class CoffeeShopGUI extends JFrame
 	     for (Category category : coffeeShop.getCategories().values()) 
 	     {
 	    	 JPanel categoryPanel = createCategoryPanel(category);
+	    	 categoryPanel.setBackground(new Color(110,51,26));
 	    	 tabbedPane.addTab(category.getName(), categoryPanel);
 	     }
 	     
+	     tabbedPane.setBackground(new Color(110,51,26));
 	     //Adds tabbedPane to frame
 	     frame.add(tabbedPane, BorderLayout.CENTER);
 	     
@@ -85,6 +106,7 @@ public class CoffeeShopGUI extends JFrame
 	     JPanel lowQuantityPanel = new JPanel();
 	     //Button to check if products are below threshold
 	     JButton checkLowQuantityButton = new JButton("Check Low Quantity");
+	     checkLowQuantityButton.setBackground(new Color(255,255,153));
 	        checkLowQuantityButton.addActionListener(new ActionListener() 
 	        {
 	            @Override
